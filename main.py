@@ -1,6 +1,13 @@
 from steamgrid import SteamGridDB
+from dotenv import load_dotenv
+import os
 
-sgdb = SteamGridDB('77d20bdbd03525d8324af4daf9b2ac1a')
+load_dotenv()
+api_key = os.getenv("STEAMGRIDDB_API_KEY")
+if api_key is None:
+    raise RuntimeError("No api key found!")
+
+sgdb = SteamGridDB(api_key)
 
 def SearchGames(name):
     result = sgdb.search_game(name)
