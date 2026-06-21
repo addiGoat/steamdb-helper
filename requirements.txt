@@ -1,0 +1,9 @@
+certifi==2026.6.17
+cffi==2.0.0
+charset-normalizer==3.4.7
+idna==3.18
+pycparser==3.0
+python-steamgriddb==1.0.5
+raylib==6.0.1.0
+requests==2.34.2
+urllib3==2.7.0
