@@ -2,6 +2,7 @@ from raylib import *
 from steamgrid import SteamGridDB
 from dotenv import load_dotenv
 import os
+import json
 
 load_dotenv()
 api_key = os.getenv("STEAMGRIDDB_API_KEY")
@@ -26,7 +27,6 @@ print("=========")
 for index, game in enumerate(searchResult):
     if game is None:
         raise RuntimeError("Search failed")
-    assert game.name
     print(f"{index + 1}: {game.name} - {game.id}")
 
 print("=========")
@@ -49,9 +49,14 @@ while True:
         break
 
 gameChoice = searchResult[choice]
-print(gameChoice.id)
+if gameChoice.id is None:
+    raise RuntimeError("Game ID not found")
 
-assert gameChoice.id
-grids = sgdb.get_grids_by_gameid([gameChoice.id])
-print(grids)
-print(grids[0].url)
+grids = sgdb.get_heroes_by_gameid([gameChoice.id])
+assert grids
+for grid in grids:
+    print(grid.type)
+
+print("========")
+print(f"grid count: {len(grids)}")
+ 
