@@ -10,8 +10,8 @@ client = GridClient.GridDBClient(os.getenv("STEAMGRIDDB_API_KEY"))
 
 results = client.SearchGames("white Knuckle")
 
-def save_callback():
-    print("Save Clicked")
+def button_callback(sender):
+    print(f"Button clicked: {sender}")
 
 dpg.create_context()
 
@@ -20,7 +20,7 @@ with dpg.window(tag='Main Window'):
         if game.name is None:
             raise(RuntimeError("Game Name Not Found"))
     
-        dpg.add_button(tag=f"Btn{index}", label=f"Button {index}: {game}")
+        dpg.add_button(tag=f"Btn{index}", label=f"Button {index}: {game}", callback=button_callback)
 dpg.show_item_registry()
 
 dpg.create_viewport(title='Helper Window', width=600, height=400)
