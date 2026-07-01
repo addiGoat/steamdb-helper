@@ -7,3 +7,4 @@ python-steamgriddb==1.0.5
 raylib==6.0.1.0
 requests==2.34.2
 urllib3==2.7.0
+dearpygui==2.3.1

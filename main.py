@@ -1,4 +1,4 @@
-from steamgrid import SteamGridDB
+import dearpygui.dearpygui as dpg
 from dotenv import load_dotenv
 import os
 
@@ -8,6 +8,31 @@ load_dotenv()
 
 client = GridClient.GridDBClient(os.getenv("STEAMGRIDDB_API_KEY"))
 
+results = client.SearchGames("white Knuckle")
+
+def save_callback():
+    print("Save Clicked")
+
+dpg.create_context()
+
+with dpg.window(tag='Main Window'):
+    b0 = dpg.add_button(label="Button 0")
+    b1 = dpg.add_button(tag=100, label="Button 1")
+    dpg.add_button(tag="Btn2", label="Button 0")
+
+
+print(b0)
+print(b1)
+print(dpg.get_item_label("Btn2"))
+dpg.create_viewport(title='Helper Window', width=600, height=400)
+dpg.setup_dearpygui()
+dpg.show_viewport()
+dpg.set_primary_window("Main Window", True)
+dpg.start_dearpygui()
+dpg.destroy_context()
+
+
+    
 
 # print("Search for a game:")
 # query = input()
